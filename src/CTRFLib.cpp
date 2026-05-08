@@ -3,10 +3,24 @@
 
 #include "CTRFLib.h"
 
-using namespace std;
+namespace ctrf {
+	template <typename T>
+	byteorder CtrFile<T>::get_byteorder() {
+		return _filedata->header.byteorder;
+	}
 
-int main()
-{
-	cout << "Hello CMake." << endl;
-	return 0;
+	template <typename T>
+	size_t CtrFile<T>::get_filesize() {
+		return _filedata->header.size_file;
+	}
+
+	template <typename T>
+	size_t CtrFile<T>::get_headersize() {
+		return _filedata->header.size_header;
+	}
+
+	template <typename T>
+	uint32_t CtrFile<T>::get_countblocks() {
+		return _filedata->header.count_blocks;
+	}
 }

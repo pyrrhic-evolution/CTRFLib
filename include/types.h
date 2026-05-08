@@ -18,8 +18,6 @@ namespace ctrf {
 	};
 
 	typedef char magic[4];
-	typedef std::vector<std::byte> bytestream;
-	typedef std::span<std::byte> byteview;
 
 	typedef struct {
 		patriciatype type;
@@ -43,8 +41,19 @@ namespace ctrf {
 	};
 
 	typedef struct {
-	
-	};
+		uint32_t reference_id;
+		uint32_t offset;
+	} blockref;
+
+	typedef struct : blockref {
+		uint32_t size_block;
+	} sized_blockref;
+
+	typedef struct {
+		magic magic;
+		uint32_t size;
+		std::byte data[];
+	} block;
 
 	typedef struct {
 		magic magic;
@@ -52,12 +61,12 @@ namespace ctrf {
 		uint16_t size_header;
 		uint32_t version;
 		uint32_t size_file;
-		uint32_t count_block;
+		uint32_t count_blocks;
 	} fileheader;
 
 	typedef union {
 		fileheader header;
-		bytestream stream;
+		std::byte stream[];
 	} filedata;
 
 	#pragma pack(pop)
