@@ -53,7 +53,7 @@ namespace ctrf {
 		magic magic;
 		uint32_t size;
 		std::byte data[];
-	} block;
+	} blockdata;
 
 	typedef struct {
 		magic magic;
