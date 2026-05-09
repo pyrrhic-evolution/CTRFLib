@@ -13,7 +13,7 @@ endif()
 project ("CTRFLib")
 
 # Add source to this project's executable.
-add_executable (CTRFLib "src/CTRFLib.cpp" "include/CTRFLib.h" "include/CSAR/csar.h" "include/CSAR/cseq.h" "include/CSAR/cwav.h" "include/CSAR/cgrp.h" "include/CSAR/cwsd.h" "include/CSAR/cbnk.h" "include/CSAR/cwar.h" "include/types.h")
+add_executable (CTRFLib "src/CTRFLib.cpp" "include/CTRFLib.h" "include/CSAR/csar.h" "include/CSAR/cseq.h" "include/CSAR/cwav.h" "include/CSAR/cgrp.h" "include/CSAR/cwsd.h" "include/CSAR/cbnk.h" "include/CSAR/cwar.h" "include/types.h" "src/cseq.cpp")
 target_include_directories(CTRFLib PRIVATE "include/")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

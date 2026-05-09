@@ -8,14 +8,13 @@
 #include "types.h"
 
 namespace ctrf {
-	typedef std::vector<std::byte> bytearray;
-	typedef std::span<std::byte> byteview;
+	typedef std::vector<std::byte> bytevector;
+	typedef std::span<std::byte> bytearray;
+	typedef std::span<const std::byte> byteview;
 
-	template <typename T>
 	class CtrFile {
 		std::unique_ptr<filedata> _filedata;
-		std::vector<byteview> _raw_blocks;
-		std::list<T> _blocklist;
+		std::vector<bytearray> _raw_blocks;
 	public:
 		byteorder get_byteorder();
 		size_t get_filesize();
@@ -26,14 +25,13 @@ namespace ctrf {
 
 	class CtrBlockBuilder{
 	public:
-		virtual std::shared_ptr<block> build();
+		virtual std::shared_ptr<blockdata> build();
 	};
 
-	template <typename T>
 	class CtrFileBuilder {
 		std::vector<CtrBlockBuilder> builders_blocks;
 	public:
-		virtual std::shared_ptr<CtrFile<T>> build();
+		virtual std::shared_ptr<CtrFile> build();
 	};
 }
 
